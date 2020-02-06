@@ -1,0 +1,56 @@
+
+<%
+local http = require("luci.http")
+http.prepare_content("text/html; charset=utf-8")
+-%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" type="text/css" href="<%= resource %>/arduino/style.ugly.css"/>
+  <title>Serlan</title>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <div class="wrapper">
+      <h1>Serlan</h1>
+
+      <div id="logo"><a href="<%= pcdata(controller .. '/webpanel') %>"><img src="<%= resource %>/arduino/TEC++5c300.gif" alt="Serlan"/></a></div>
+      <div id="logophone"><a href="<%= pcdata(controller .. '/webpanel') %>"><img src="<%= resource %>/arduino/logo_phone.svg" alt="Serlan"/></a></div>
+    </div>
+  </div>
+  <div id="content">
+    <div class="wrapper divide">
+      <h2>Uploading sketch...</h2>
+    </div>
+    <div class="wrapper divide">
+
+      <% if string.len(kill_bridge_output) > 0 then %>
+      <p>Error while killing bridge</p>
+      <textarea rows="5" readonly="readonly"><%= kill_bridge_output %></textarea>
+      <% else %>
+      <p>Previously running Bridge terminated.</p>
+      <% end %>
+
+      <% if string.len(run_avrdude_output) > 0 then %>
+      <p>Upload output</p>
+      <textarea rows="5" readonly="readonly"><%= run_avrdude_output %></textarea>
+      <% end %>
+    </div>
+    <div class="wrapper divide">
+      <form method="get" action="<%= pcdata(controller .. '/webpanel') %>">
+        <ul>
+          <li>
+            <div class="input_container">
+              <input class="btTxt submit saveForm" type="submit" name="button" value="Back to the homepage">
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+
+<%
+local http = require("luci.http")
+http.prepare_content("text/html; charset=utf-8")
+-%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+  <link rel="stylesheet" type="text/css" href="<%= resource %>/arduino/style.ugly.css"/>
+  <title>Serlan</title>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <div class="wrapper">
+      <h1>Serlan</h1>
+
+      <div id="logo"><a href="<%= pcdata(controller .. '/webpanel') %>"><img src="<%= resource %>/arduino/TEC++5c300.gif" alt="Serlan"/></a></div>
+      <div id="logophone"><a href="<%= pcdata(controller .. '/webpanel') %>"><img src="<%= resource %>/arduino/logo_phone.svg" alt="Serlan"/></a></div>
+    </div>
+  </div>
+  <div id="content">
+    <div class="wrapper divide">
+      <h2>I'm resetting.</h2>
+    </div>
+    <div class="wrapper divide img_container">
+      <p>Please wait until the WLAN led stops blinking. It will take about 3 minutes to finish.</p>
+      <img src="<%= resource %>/arduino/restart-01.png"/>
+    </div>
+    <div class="wrapper divide">
+      <p>After the board has reset, connect your computer the wireless network <strong><%= name %></strong>, and you'll find me there at <a href="http://Serlan.local">http://Serlan.local</a></p>
+    </div>
+  </div>
+  <!-- #content -->
+  <br class="clear"/>
+</div>
+<!-- #container -->
+</body>
+</html>
